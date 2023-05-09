@@ -45,9 +45,9 @@ def find_in_files(search_number, files):
             contents = f.read()
             index = contents.find(search_number)
             
-            search_size = len(search_number) + len(search_number)
+            search_size = len(search_number) + 1
             if even:
-                between_buffer = contents[:search_size]
+                between_buffer.extend(contents[:search_size])
             else:
                 between_buffer = contents[-search_size:]
             
@@ -77,7 +77,7 @@ def main():
             files.append(os.path.join(root, filename))
     result = find_in_files(number_to_search, files)
     if result is not None:
-        print(f"Found '{number_to_search}' in file '{result}' at index {result[1]}.")
+        print(f"Found '{number_to_search}' in or starting in file '{result}' at index {result[1]}.")
     else:
         print(f"Could not find '{number_to_search}' in any of the files.")
 
