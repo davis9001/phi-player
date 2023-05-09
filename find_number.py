@@ -45,9 +45,9 @@ def find_in_files(search_number, files):
             contents = f.read()
             index = contents.find(search_number)
             
-            search_size = len(search_number) + 1
+            search_size = len(search_number) + len(search_number)
             if even:
-                between_buffer = between_buffer + contents[:search_size]
+                between_buffer = contents[:search_size]
             else:
                 between_buffer = contents[-search_size:]
             
