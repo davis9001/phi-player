@@ -1,42 +1,6 @@
 import os
 from more_itertools import pairwise
 
-# def find_in_files(search_number, files):
-#     for (a, b) in pairwise(files):
-#         with open(a, "r") as f1:
-#             with open(b, "r") as f2:
-#                 contents = f1.read()
-#                 beg = f2.read(len(search_number) - 1)
-
-#                 index = contents.find(contents + beg)
-#                 if index != -1:
-#                     if index - len(contents) > len(search_number):
-#                         print("input is straddling files")
-
-#                     return (a, index)
-#     return None
-
-
-def find_number_spanning_files(search_number, files):
-    search_len = len(search_number)
-    search_between_file = []
-    search_between_buffer = ''
-    index = 0
-    for file in files:
-      if index > 1:
-          index = 0
-          search_between_buffer = ''
-      if index > 0:
-          found = search_between_buffer.find(search_number)
-          if found != -1:
-              return (file, found)
-      search_between_file = search_between_file + file
-      with open(file, "r") as f:
-        file_start = file[0:search_len]
-        file_end = file[-search_len:0]
-        search_between_buffer += file_start + file_end
-        index = index + 1
-
 def find_in_files(search_number, files):
     even = False
     between_buffer = ''
@@ -50,7 +14,7 @@ def find_in_files(search_number, files):
                 between_buffer.extend(contents[:search_size])
             else:
                 between_buffer = contents[-search_size:]
-            
+
             print('between buffer: ' + between_buffer)
             if index != -1:
                 return (file, index)
@@ -65,7 +29,7 @@ def find_in_files(search_number, files):
                 even = True
             else:
                 even = False
-                    
+    
     return None
 
 def main():
